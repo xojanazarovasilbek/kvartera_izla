@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ kvartir.title }} - Batafsil</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        h1 {
+            margin-top: 20px;
+            color: #007bff;
+        }
+
+        p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .price {
+            color: green;
+            font-weight: bold;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+            border: 1px solid #007bff;
+            padding: 8px 12px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="{{ kvartir.image.url }}" alt="Kvartira rasmi">
+        <a href="{% url 'kvartera_delete' kvartir.id %}" class="btn-back">🗑 O‘chirish</a>
+
+
+        <h1>{{ kvartir.title }}</h1>
+        <p><strong>Joylashuv:</strong> {{ kvartir.locashion }}</p>
+        <p><strong>Tavsif:</strong> {{ kvartir.deck }}</p>
+        <p class="price"><strong>Narx:</strong> {{ kvartir.price }} so‘m</p>
+        <p><small>Yaratilgan: {{ kvartir.created_at }} | Yangilangan: {{ kvartir.updated_at }}</small></p>
+
+        <a class="back-link" href="{% url 'kvartira' %}">⬅ Orqaga</a>
+    </div>
+</body>
+</html>

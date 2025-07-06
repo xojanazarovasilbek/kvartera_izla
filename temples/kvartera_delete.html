@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Kvartirani o‘chirish</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            padding: 30px;
+        }
+
+        .confirm-box {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #d9534f;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            color: #555;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        button {
+            background: #d9534f;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        a {
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            background: #6c757d;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="confirm-box">
+        <h2>Kvartirani o‘chirishni xohlaysizmi?</h2>
+        <p><strong>{{ kvartera.title }}</strong> — bu kvartira o‘chiriladi.</p>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit">Ha, o‘chirish</button>
+            <a href="{% url 'kvartera_delete' kvartera.id %}">Yo‘q, ortga qaytish</a>
+        </form>
+    </div>
+</body>
+</html>

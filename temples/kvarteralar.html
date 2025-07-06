@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Kvartiralar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 300px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .kvartira-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .kvartira-card img {
+            width: 200px;
+            height: auto;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .kvartira-info {
+            flex: 1;
+        }
+
+        .kvartira-info h2 {
+            margin: 0 0 10px;
+            color: #007bff;
+        }
+
+        .kvartira-info p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .price {
+            font-weight: bold;
+            color: green;
+        }
+
+        .btn-detail, .btn-back {
+            display: inline-block;
+            padding: 10px 16px;
+            margin: 8px 4px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-back {
+            background-color: #6c757d;
+        }
+
+        .btn-detail:hover {
+            background-color: #0056b3;
+        }
+
+        .btn-back:hover {
+            background-color: #5a6268;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            font-weight: bold;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<form method="GET">
+    <input type="text" name="q" placeholder="Kvartira nomi narxini  kiriting..." value="{{ request.GET.q }}">
+    <button type="submit">Qidirish</button>
+</form>
+    <div class="container">
+        <h1>Kvartiralar ro‘yxati</h1>
+
+        {% for kvartira in kvartira %}
+        <div class="kvartira-card">
+            <img src="{{ kvartira.image.url }}" alt="Kvartira rasmi">
+            <div class="kvartira-info">
+                <h2>{{ kvartira.title }}</h2>
+                <p><strong>Joylashuv:</strong> {{ kvartira.locashion }}</p>
+                <p>{{ kvartira.deck }}</p>
+                <p class="price">{{ kvartira.price }} so‘m</p>
+                <p><small>Yaratilgan: {{ kvartira.created_at }} | Yangilangan: {{ kvartira.updated_at }}</small></p>
+            </div>
+            <a href="{% url 'kvartera_detal' kvartira.pk %}" class="btn-detail">Batafsil</a>
+            <a href="{% url 'kvartera_update' kvartira.id %}" class="btn-back">← Tahrirlash</a>
+        </div>
+        {% empty %}
+        <p>Hech qanday kvartira topilmadi.</p>
+        {% endfor %}
+        <a href="{% url 'kvartira_create' %}" class="btn-detail">+ Yangi Kansaner</a>
+        <a class="back-link" href="{% url 'home' %}">⬅ Orqaga</a>
+    </div>
+</body>
+</html>
