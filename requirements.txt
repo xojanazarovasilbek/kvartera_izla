@@ -23,6 +23,7 @@ Faker==37.0.0
 filelock==3.17.0
 fonttools==4.56.0
 frozenlist==1.5.0
+gunicorn==23.0.0
 h11==0.14.0
 httpcore==1.0.7
 httpx==0.28.1
